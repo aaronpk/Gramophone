@@ -6,10 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "indieauth/client": "^0.2.2",
+        "indieauth/client": "^0.2.3",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "p3k/utils": "^1.0"
+        "p3k/utils": "^1.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

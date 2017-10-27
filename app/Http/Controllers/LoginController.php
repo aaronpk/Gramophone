@@ -20,15 +20,19 @@ class LoginController extends Controller
 
   public function start() {
     if(!Request::input('url')) {
-      return view('login/error', [
-        'error' => 'invalid url',
-        'description' => 'The URL you entered was not valid'
-      ], 400);
+      return redirect('login')->with('auth_error', 'invalid url')
+        ->with('auth_error_description', 'The URL you entered was not valid');
     }
 
     // Discover the endpoints
     $url = IndieAuth\Client::normalizeMeURL(Request::input('url'));
     $authorizationEndpoint = IndieAuth\Client::discoverAuthorizationEndpoint($url);
+
+    if(!$authorizationEndpoint) {
+      return redirect('login')->with('auth_error', 'missing authorization endpoint')
+        ->with('auth_error_description', 'Could not find your authorization endpoint')
+        ->with('auth_url', Request::input('url'));
+    }
 
     $state = str_random(32);
     session([
@@ -54,14 +58,14 @@ class LoginController extends Controller
       return view('login/error', [
         'error' => 'missing state',
         'description' => 'No state was provided in the callback. The IndieAuth server may be configured incorrectly.'
-      ], 400);
+      ]);
     }
 
     if(Request::input('state') != session('state')) {
       return view('login/error', [
         'error' => 'invalid state',
         'description' => 'The state returned in the callback did not match the expected value. The IndieAuth server may be configured incorrectly.'
-      ], 400);
+      ]);
     }
 
     // Check the authorization code at the endpoint previously discovered

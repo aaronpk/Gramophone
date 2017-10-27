@@ -7,11 +7,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">{{ env('HEADER_BRAND') }}</a>
+        <a class="navbar-brand" href="/">{{ env('APP_NAME') }}</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a href="/blog">Blog</a></li>
+          @if(Auth::user())
+            <li><a href="/dashboard">Dashboard</a></li>
+          @endif
         </ul>
         <ul class="nav navbar-nav navbar-right">
           @if(Auth::user())

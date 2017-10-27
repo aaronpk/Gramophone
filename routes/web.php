@@ -21,3 +21,14 @@ Route::get('/login', 'LoginController@login')->name('login');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::post('/login', 'LoginController@start');
 Route::get('/login/callback', 'LoginController@callback')->name('login_callback');
+
+
+Route::get('/podcast/new', 'PodcastController@create')->name('new_podcast');
+
+Route::get('/podcast/auth', 'PodcastAuthController@start')->name('podcast_auth');
+Route::get('/podcast/callback', 'PodcastAuthController@callback')->name('podcast_auth_callback');
+Route::get('/podcast/auth/error', 'PodcastAuthController@error')->name('podcast_auth_error');
+
+Route::get('/podcast/{podcast}', 'PodcastController@podcast')->name('get_podcast');
+Route::post('/podcast/{podcast}', 'PodcastController@update')->name('update_podcast');
+

@@ -9,6 +9,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
+
+                    @if(session('auth_error'))
+                      <div class="alert alert-danger">
+                        <strong>{{ session('auth_error') }}</strong> 
+                        <p>{{ session('auth_error_description') }}</p>
+                      </div>
+                    @endif
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
@@ -16,13 +24,7 @@
                             <label for="url" class="col-md-4 control-label">Your Website</label>
 
                             <div class="col-md-6">
-                                <input id="url" type="url" class="form-control" name="url" value="{{ old('url') }}" required autofocus>
-
-                                @if ($errors->has('url'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('url') }}</strong>
-                                    </span>
-                                @endif
+                                <input id="url" type="url" class="form-control" name="url" value="{{ session('auth_url') }}" required autofocus>
                             </div>
                         </div>
 

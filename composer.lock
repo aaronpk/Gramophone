@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "53716744ce23d95854a980695f4ba91a",
+    "content-hash": "84fec585d1a82230f83a117c9fe0cd14",
     "packages": [
         {
             "name": "barnabywalters/mf-cleaner",
@@ -190,16 +190,16 @@
         },
         {
             "name": "indieauth/client",
-            "version": "0.2.2",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/indieweb/indieauth-client-php.git",
-                "reference": "225ece31ddafaee3348eabdc915422c457498a84"
+                "reference": "f04cb872dd6f1f1bcc7d02b8b543aea0b7c0851f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/indieweb/indieauth-client-php/zipball/225ece31ddafaee3348eabdc915422c457498a84",
-                "reference": "225ece31ddafaee3348eabdc915422c457498a84",
+                "url": "https://api.github.com/repos/indieweb/indieauth-client-php/zipball/f04cb872dd6f1f1bcc7d02b8b543aea0b7c0851f",
+                "reference": "f04cb872dd6f1f1bcc7d02b8b543aea0b7c0851f",
                 "shasum": ""
             },
             "require": {
@@ -225,7 +225,7 @@
                 }
             ],
             "description": "IndieAuth Client Library",
-            "time": "2017-07-01T15:43:45+00:00"
+            "time": "2017-10-27T20:42:01+00:00"
         },
         {
             "name": "indieweb/link-rel-parser",
@@ -1008,6 +1008,56 @@
                 "random"
             ],
             "time": "2017-09-27T21:40:39+00:00"
+        },
+        {
+            "name": "predis/predis",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2016-06-16T16:22:20+00:00"
         },
         {
             "name": "psr/log",

@@ -8350,3 +8350,15 @@ button.close {
   }
 }
 
+.dashboard .podcast-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard .podcast-list li {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
