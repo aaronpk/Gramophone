@@ -109,11 +109,11 @@ class PodcastAuthController extends Controller
       $podcast->micropub_endpoint = session('micropub_endpoint');
       $podcast->media_endpoint = session('media_endpoint');
       $podcast->access_token = $token['access_token'];
-      $podcast->name = $token['me'];
+      $podcast->name = parse_url($token['me'], PHP_URL_HOST);
       $podcast->save();
 
       self::_clearSession();
-      return redirect(route('dashboard'));
+      return redirect(route('edit_podcast', ['podcast'=>$podcast]));
 
     } else {
       self::_clearSession();

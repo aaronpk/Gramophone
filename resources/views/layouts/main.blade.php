@@ -11,7 +11,6 @@
     <title>{{ isset($file) ? $file->name() : env('APP_NAME') }}</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 <body class="{{ isset($is_permalink) && $is_permalink ? 'permalink' : '' }}">
 
