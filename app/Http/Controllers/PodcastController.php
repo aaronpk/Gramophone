@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use Request, DB, Gate, Storage;
-use App\User, App\Podcast;
+use App\User, App\Podcast, App\Episode;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
@@ -261,6 +261,24 @@ class PodcastController extends Controller
         if($response->getStatusCode() == 201) {
           if($response->hasHeader('Location')) {
             $episode_url = $response->getHeader('Location')[0];
+
+            // Save the new episode number
+            $podcast->last_episode_number = (int)Request::input('number');
+            $podcast->save();
+
+            // Log this episode as complete
+            $episode = new Episode;
+            $episode->podcast_id = $podcast->id;
+            $episode->name = Request::input('name');
+            $episode->episode = Request::input('number');
+            $episode->date = Request::input('date');
+            $episode->duration = Request::input('duration');
+            $episode->summary = Request::input('summary');
+            $episode->content = Request::input('description');
+            $episode->episode_url = $episode_url;
+            $episode->audio_url = Request::input('audio');
+            $episode->save();
+
             return response()->json([
               'result' => 'ok',
               'location' => $episode_url

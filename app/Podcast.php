@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Podcast extends Model
 {
-  public function podcast() {
+  public function user() {
     return $this->belongsTo('App\User');
   }
 }
