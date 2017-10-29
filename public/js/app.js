@@ -788,13 +788,13 @@ jQuery(function ($) {
       if (request.readyState == XMLHttpRequest.DONE) {
         try {
           var response = JSON.parse(request.responseText);
-          console.log(response);
           if (response.id) {
             $("#choose-audio-file").addClass("hidden");
             $("#audio-file-uploaded").removeClass("hidden");
             $("#audio-file-size").text(response.filesize);
             $("#audio-file-duration").text(response.duration);
             $("#audio-file-id").val(response.id);
+            $("#audio-file-player").attr("src", response.url);
           } else {
             $("#upload-audio-btn").removeClass("disabled");
             $("#upload-audio-btn .glyphicon").addClass("hidden");

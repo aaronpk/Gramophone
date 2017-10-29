@@ -47,16 +47,18 @@
   <div id="audio-file-uploaded" class="hidden">
     <p><b>File Prepared:</b> <span id="audio-file-size"></span> <span id="audio-file-duration"></span></p>
 
+    <audio src="" id="audio-file-player" controls style="width: 100%;"></audio>
+
     <input type="hidden" id="audio-file-id">
 
     <div class="form-group">
       <label for="episode_name">Episode Name</label>
-      <input type="text" class="form-control" id="episode_name" placeholder="" value="Episode {{ $podcast->number+1 }}">
+      <input type="text" class="form-control" id="episode_name" placeholder="" value="Episode {{ $podcast->last_episode_number+1 }}">
     </div>
 
     <div class="form-group">
       <label for="episode_number">Episode Number</label>
-      <input type="number" class="form-control" id="episode_number" value="{{ $podcast->number+1 }}">
+      <input type="number" class="form-control" id="episode_number" value="{{ $podcast->last_episode_number+1 }}">
     </div>
 
     <div class="form-group">

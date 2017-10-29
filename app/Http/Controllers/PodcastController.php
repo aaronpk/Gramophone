@@ -79,20 +79,21 @@ class PodcastController extends Controller
           $filename = $file->store('audio');
           $new_filename = $podcast->id.'_'.date('Ymd_His').'.mp3';
 
-          $cmd = env('FFMPEG_BIN').' -i "'.env('STORAGE_FOLDER').'/'.$filename.'" -b:a '.$bitrate.' '.$mono.' '.env('STORAGE_FOLDER').'/audio/'.$new_filename.' 2>&1';
+          $cmd = env('FFMPEG_BIN').' -i "'.env('STORAGE_FOLDER').'/'.$filename.'" -b:a '.$bitrate.' '.$mono.' '.env('STORAGE_FOLDER').'/public/audio/'.$new_filename.' 2>&1';
           $output = shell_exec($cmd);
 
-          if(Storage::exists('audio/'.$new_filename)) {
+          if(Storage::exists('public/audio/'.$new_filename)) {
 
-            $size = round(Storage::size('audio/'.$new_filename)/1024/1024, 2).'mb';
+            $size = round(Storage::size('public/audio/'.$new_filename)/1024/1024, 2).'mb';
             
             $id3 = new \getID3;
-            $info = $id3->analyze(env('STORAGE_FOLDER').'/audio/'.$new_filename);
+            $info = $id3->analyze(env('STORAGE_FOLDER').'/public/audio/'.$new_filename);
 
             return response()->json([
               'id' => $new_filename,
               'filesize' => $size,
               'duration' => gmdate('i:s', $info['playtime_seconds']),
+              'url' => '/storage/audio/'.$new_filename,
             ]);
           } else {
             return response()->json([
@@ -128,7 +129,7 @@ class PodcastController extends Controller
         'sink' => $tmpfile
       ]);
 
-      $full_filename = env('STORAGE_FOLDER').'/audio/'.Request::input('id');
+      $full_filename = env('STORAGE_FOLDER').'/public/audio/'.Request::input('id');
       if(!file_exists($full_filename)) {
         abort(400);
       }
@@ -177,7 +178,7 @@ class PodcastController extends Controller
     $podcast = Podcast::where('id', Request::input('podcast'))->first();
     if($podcast && Gate::allows('edit-podcast', $podcast)) {
 
-      $full_filename = env('STORAGE_FOLDER').'/audio/'.Request::input('id');
+      $full_filename = env('STORAGE_FOLDER').'/public/audio/'.Request::input('id');
       if(!file_exists($full_filename)) {
         abort(400);
       }
